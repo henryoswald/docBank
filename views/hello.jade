@@ -1,0 +1,8 @@
+h1 Users
+ul#users 
+  - each user in users
+    li= user.name
+
+form(method='get', action='/testpost')
+  input#name
+  input(type='submit')
