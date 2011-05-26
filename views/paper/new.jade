@@ -1,0 +1,22 @@
+h1 New
+
+form(method="post",action="/paper")
+  div.span-24
+    label Position
+    br
+    input(type="text", name="paper[position]", value=paper.title)
+  div.span-24
+    label Body
+    br
+    textarea(name="paper[body]")
+  div.span-24.showgrid
+    div.span-5
+      Label Start Date
+      br
+      input(type="date", name="paper[end_date]")
+    div.span-5.last
+      Label End Date
+      br
+      input(type="date", name="paper[start_date]")
+  div.span-24
+    input(type="submit", value="Submit")

@@ -1,6 +1,10 @@
-!!!
+!!! 5
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-  body!= body
+    link(rel='stylesheet',  href='/stylesheets/screen.css', media='screen, projection', rel='stylesheet', type='text/css')
+    link(rel='stylesheets', href='/stylesheets/print.css', media='print', rel='stylesheet', type='text/css')
+    // [if IE] ><link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />  <![endif]    
+    body.container
+      div#main
+        != body

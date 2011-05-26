@@ -1,0 +1,12 @@
+h1= title
+p #{title}
+a(href="/paper/new") New paper
+hr
+div#papers.showgrid
+- each paper in papers
+  div#paper
+    div#paper_title
+      a(href='/paper/'+paper._id) #{paper.title}
+    div#paper_body
+      #{paper.body}
+    a(href='/paper/'+paper._id+'/edit') Edit
