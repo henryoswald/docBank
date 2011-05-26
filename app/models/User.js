@@ -1,18 +1,17 @@
+var settings = require('../../config/settings');
+
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/Papersdb');
+mongoose.connect(settings.mongodb_url);
 Schema = mongoose.Schema,
 ObjectId = Schema.ObjectId;
 
-// Paper schema
 
-var Paper = new Schema({
-  position		: {type : String, default : '', required : true},
-  body			: {type : String, default : ''},
-  start_date	: {type : Date,	  default : ''},
-  end_date		: {type : Date,   default : ''},
-  created_date  : {type : Date,   default : Date.now},
-  updated_date  : {type : Date,   default : Date.now}
+// User schema
+var User = new Schema({
+  email 		: {type : String, default : ''},
+  password		: {type : String, default : ''},
 });
   
-mongoose.model('Paper', Paper);
-var Paper = exports.Paper = mongoose.model('Paper');
+mongoose.model('User', User);
+var User = exports.User = mongoose.model('User');
+

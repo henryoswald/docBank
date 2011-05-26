@@ -1,10 +1,12 @@
+var settings = require('../../config/settings');
+
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/bank');
+mongoose.connect(settings.mongodb_url);
 Schema = mongoose.Schema,
 ObjectId = Schema.ObjectId;
 
-// Paper schema
 
+// Paper schema
 var Paper = new Schema({
   Position		: {type : String, default : '', required : true},
   body			: {type : String, default : ''},

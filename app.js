@@ -9,6 +9,9 @@ var app = module.exports = express.createServer();
 var documents = require('./app/models/Paper.js');
 var Paper = documents.Paper;
 
+var documents2 = require('./app/models/User.js');
+var User = documents2.User;
+
 // Configuration
 // no sass in here becuse we use Compass compiler
 app.configure(function(){
@@ -79,6 +82,7 @@ app.post('/paper', function(req, res){
 
 });
 
+
 // View an paper
 app.get('/paper/:id', function(req, res){
   Paper.findOne({_id:req.params.id}, function(err,paper){
@@ -109,6 +113,21 @@ app.del('/paper/:id', function(req, res){
   res.redirect('/paper');
 });
 
+
+app.get('/user', function(req, res){
+  res.render('security/new', {
+    title: 'New'
+  });
+});
+
+
+// Create/Update users
+app.post('/user', function(req, res){
+   user = new User(req.body.user);
+    user.save(function(err){
+      console.log("Created");
+    });
+});
 
 
 
