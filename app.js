@@ -6,13 +6,13 @@
 var express = require('express');
 var sys = require('sys');
 var app = module.exports = express.createServer();
-var models = require('./models/reference.js');
-var Paper = models.Paper;
+var documents = require('./app/models/Paper.js');
+var Paper = documents.Paper;
 
 // Configuration
 // no sass in here becuse we use Compass compiler
 app.configure(function(){
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + '/app/views');
   app.set('view engine', 'jade');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
