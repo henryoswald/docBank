@@ -93,7 +93,7 @@ app.get('/paper/:id', function(req, res){
 app.get('/paper/:id/edit', function(req, res){
   Paper.findOne({_id:req.params.id}, function(err,paper){
     res.render('paper/new', {
-      title: 'Edit'
+      title: paper.doc.title,
       paper: paper.doc
     });
   });
