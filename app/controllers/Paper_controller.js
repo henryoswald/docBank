@@ -10,6 +10,7 @@ exports.create = function(req, res){
 
 // Create/Update papers
 exports.doCreate = function(req, res){
+	console.log("e");
   if(req.body.paper._id)
     Paper.findOne({_id:req.body.paper._id}, function(err, a) {
       a.title = req.body.paper.title;
@@ -21,12 +22,11 @@ exports.doCreate = function(req, res){
   else {
     paper = new Paper(req.body.paper);
     paper.save(function(err){
+      console.log(paper);
       console.log("Created");
     });
   }
-
   res.redirect('/paper');
-
 };
 
 

@@ -3,8 +3,6 @@ var settings = require('../../config/settings');
 var mongoose = require('mongoose');
 mongoose.connect(settings.mongodb_url);
 
-
-
 // User schema
 var User = new mongoose.Schema({
   email 		: {type : String, default : ''},
@@ -12,5 +10,6 @@ var User = new mongoose.Schema({
 });
   
 mongoose.model('User', User);
-var User = exports.User = mongoose.model('User');
+
+exports.User = mongoose.model('User');
 

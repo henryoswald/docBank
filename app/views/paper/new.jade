@@ -1,4 +1,4 @@
-h1 New
+h1 New Paper
 
 form(method="post",action="/paper")
   div.span-24
@@ -9,7 +9,7 @@ form(method="post",action="/paper")
     label Body
     br
     textarea(name="paper[body]")
-  div.span-24.showgrid
+  div.span-24
     div.span-5
       Label Start Date
       br
@@ -19,4 +19,5 @@ form(method="post",action="/paper")
       br
       input(type="date", name="paper[start_date]")
   div.span-24
-    input(type="submit", value="Submit")
+    button.button.standard(type="submit")
+      | Submit
