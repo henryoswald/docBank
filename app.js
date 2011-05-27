@@ -6,11 +6,17 @@
 var express = require('express');
 var sys = require('sys');
 var app = module.exports = express.createServer();
-var documents = require('./app/models/Paper.js');
-var Paper = documents.Paper;
+//var documents = require('./app/models/Paper.js');
+//var Paper = documents.Paper;
+
+var Paper = require('./app/controllers/Paper_controller.js');
+
 
 var documents2 = require('./app/models/User.js');
 var User = documents2.User;
+
+require.paths.unshift(__dirname+'/config');
+
 
 // Configuration
 // no sass in here becuse we use Compass compiler
@@ -42,77 +48,13 @@ app.get('/', function(req, res){
 });
 
 
-// Paper Routes
-
-// Listing of papers
-app.get('/paper', function(req, res){
-  Paper.find({}, function(err, docs) {
-    res.render('paper/index', {
-      title: 'List of papers',
-      papers: docs
-    });
-  });
-});
-
-// New paper
-app.get('/paper/new', function(req, res){
-  res.render('paper/new', {
-    title: 'New'
-  });
-});
-
-// Create/Update papers
-app.post('/paper', function(req, res){
-  if(req.body.paper._id)
-    Paper.findOne({_id:req.body.paper._id}, function(err, a) {
-      a.title = req.body.paper.title;
-      a.body = req.body.paper.body;
-      a.save(function(err) {
-        console.log(err);
-      })
-    });
-  else {
-    paper = new Paper(req.body.paper);
-    paper.save(function(err){
-      console.log("Created");
-    });
-  }
-
-  res.redirect('/paper');
-
-});
-
-
-// View an paper
-app.get('/paper/:id', function(req, res){
-  Paper.findOne({_id:req.params.id}, function(err,paper){
-    res.render('paper/show', {
-      title: paper.doc.title,
-      paper: paper.doc
-    });
-  });
-});
-
-// Edit an paper
-app.get('/paper/:id/edit', function(req, res){
-  Paper.findOne({_id:req.params.id}, function(err,paper){
-    res.render('paper/new', {
-      title: paper.doc.title,
-      paper: paper.doc
-    });
-  });
-});
-
-// Delete an paper
-app.del('/paper/:id', function(req, res){
-  Paper.findOne({_id:req.params.id}, function(err,paper){
-    paper.remove(function(err){
-      console.log(err);
-    });
-  });
-  res.redirect('/paper');
-});
-
+// 
+app.get('/paper/new',Paper.create);
+app.post('/paper',Paper.doCreate);
+app.get('/paper',Paper.list);
+app.get('/paper/:id',Paper.list2);
+app.get('/paper/:id/edit',Paper.edit);
+app.del('/paper/:id',Paper.del);
 
 app.get('/user', function(req, res){
   res.render('security/new', {
@@ -125,8 +67,9 @@ app.get('/user', function(req, res){
 app.post('/user', function(req, res){
    user = new User(req.body.user);
     user.save(function(err){
-      console.log("Created");
+      console.log("User Created");
     });
+	res.redirect('/user');
 });
 
 

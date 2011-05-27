@@ -2,12 +2,11 @@ var settings = require('../../config/settings');
 
 var mongoose = require('mongoose');
 mongoose.connect(settings.mongodb_url);
-Schema = mongoose.Schema,
-ObjectId = Schema.ObjectId;
+
 
 
 // User schema
-var User = new Schema({
+var User = new mongoose.Schema({
   email 		: {type : String, default : ''},
   password		: {type : String, default : ''},
 });
