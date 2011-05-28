@@ -7,5 +7,17 @@ html
     // [if IE] ><link href='/stylesheets/ie.css' media='screen, projection' rel='stylesheet' type='text/css' />  <![endif]   
     link(rel='stylesheet', href='/stylesheets/buttons.css', media='screen, projection', rel='stylesheet', type='text/css')
     body.container
+      div#top.span-24
+        div#logoArea.span-14
+          a(href='/')
+            div#logo Reference Bank
+            div#subheading Give me your references
+        div#menu.span-10.last
+          div 
+          -if(session.user)
+            a(href='/logout', class='span-1') logout
+          -else
+            a(href='/login', class='span-1') login
+            
       div#main
         != body

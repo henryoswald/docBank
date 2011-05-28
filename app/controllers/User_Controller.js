@@ -1,7 +1,16 @@
 var User = require('../models/User.js').User;
 
+// checks if user is loged in
+exports.requiresLogin = function(req, res, next){
+	if(req.session.user){
+		next();
+	}else{
+		res.redirect('login');				
+	}
+}
 
-exports.create = function(req, res){
+//render register form
+exports.createForm = function(req, res){
   res.render('security/new', {
     title: 'New'
   });
@@ -9,11 +18,43 @@ exports.create = function(req, res){
 
 
 // Create/Update users
-exports.doCreate = function(req, res){
+exports.create = function(req, res){
    user = new User(req.body.user);
     user.save(function(err){
       console.log("User Created");
+      console.log(user);			
     });
 	res.redirect('/user');
 };
+
+// redner login form
+exports.loginForm = function(req,res){
+	res.render('security/login', {
+      title: 'login',
+	});
+}
+
+// adds user to session
+exports.login = function(req,res){
+	User.findOne({email: req.body.user.email, password: req.body.user.password}, function(err, user) {
+		console.log('found');
+		if(user) {
+			console.log('inside if');
+			req.session.user = user;
+			res.redirect('/')
+    } else {
+      console.log('Failed login');
+      res.redirect('/login')
+    }
+  })
+}
+
+// destroy session
+exports.logout = function(req,res){
+	if(req.session.user){
+		req.session.destroy(function(){
+		});		
+	}
+	res.redirect('/login');
+}
 

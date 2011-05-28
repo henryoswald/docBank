@@ -1,7 +1,7 @@
 var Paper = require('../models/Paper.js').Paper;
 
 // New paper
-exports.create = function(req, res){
+exports.createForm = function(req, res){
   res.render('paper/new', {
     title: 'New'
   });
@@ -9,7 +9,7 @@ exports.create = function(req, res){
 
 
 // Create/Update papers
-exports.doCreate = function(req, res){
+exports.create = function(req, res){
 	console.log("e");
   if(req.body.paper._id)
     Paper.findOne({_id:req.body.paper._id}, function(err, a) {

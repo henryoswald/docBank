@@ -13,10 +13,6 @@
 // To generate css equivalent to the blueprint css but with your
 // configuration applied, uncomment:
 
-$blueprint-grid-columns:24;
-$blueprint-grid-width:30px;
-$blueprint-grid-margin:10px;
-
 @include blueprint;
 
 // If you are doing a lot of stylesheet concatenation, it is suggested
@@ -27,8 +23,45 @@ body.bp {
   @include blueprint-utilities;
   @include blueprint-debug;
   @include blueprint-interaction;
-   // Remove the scaffolding when you're ready to start doing visual design.
-  // Or leave it in if you're happy with how blueprint looks out-of-the-box
+}
+
+body{
+  background-color: $main-background-color;
+  color: $font-color;
+}
+
+#top{
+  padding-top:20px;
+	height: 110px;
+}
+
+#logo{
+  color:$logo-color;
+  font: 60px/68px 'AmaranthRegular', Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+#logoArea a{
+  text-decoration:none;
+  color:none;
+}
+
+#subheading{
+  color:$logo-color;
+  font: 20px/28px 'AmaranthRegular', Arial, sans-serif;
+  letter-spacing: 0;
+}
+
+
+@font-face {
+    font-family: 'AmaranthRegular';
+    src: url('/fonts/amaranth/Amaranth-webfont.eot');
+    src: url('/fonts/amaranth/Amaranth-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/amaranth/Amaranth-webfont.woff') format('woff'),
+         url('/fonts/amaranth/Amaranth-webfont.ttf') format('truetype'),
+         url('/fonts/amaranth/Amaranth-webfont.svg#AmaranthRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 
