@@ -16,6 +16,7 @@ html
           div 
           -if(session.user)
             a(href='/logout', class='span-1') logout
+            span #{session.user.email}   
           -else
             a(href='/login', class='span-1') login
             

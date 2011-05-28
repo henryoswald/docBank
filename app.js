@@ -2,6 +2,20 @@
 var express = require('express');
 var sys = require('sys');
 var crypto = require('crypto');
+//var email = require('./node_modules/mailer/lib/node_mailer');
+
+var email = require('./utils/email');
+
+email.SMTP = {
+    host: "smtp.gmail.com",
+    port: 465,
+    ssl: true,
+    use_authentication: true,
+    user: "refbank123@gmail.com",
+    pass: "referencebank"
+}
+  
+
 var app = module.exports = express.createServer();
 
 //TODO WTF does this do?
@@ -70,6 +84,10 @@ app.post('/user', User.create);
 app.get('/login', User.loginForm);
 app.post('/login', User.login);
 app.get('/logout', User.logout);
+
+app.get('/email', function(){
+	email.sendEmail('henry.oswald@gmail.com', 'subje', 'hello');
+});
 
 
 // Only listen on $ node app.js
