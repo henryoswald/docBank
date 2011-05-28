@@ -8,10 +8,26 @@ exports.createForm = function(req, res){
 };
 
 
+exports.requestForm = function(req, res){
+	console.log(' rendering request form');
+	res.render('paper/request/new', {
+    title: 'Requesting Reference'
+  
+	});
+}
+
+exports.request = function(req, res){
+	paper = new Paper(req.body.paper);
+    paper.save(function(err){
+			console.log("Reference Created");
+			console.log(paper);	
+		});
+	res.redirect('/request/new');	
+};
+
 // Create/Update papers
 exports.create = function(req, res){
-	console.log("e");
-  if(req.body.paper._id)
+	if(req.body.paper._id)
     Paper.findOne({_id:req.body.paper._id}, function(err, a) {
       a.title = req.body.paper.title;
       a.body = req.body.paper.body;
@@ -23,13 +39,11 @@ exports.create = function(req, res){
     paper = new Paper(req.body.paper);
     paper.save(function(err){
       console.log(paper);
-      console.log("Created");
+      console.log("Reference Created");
     });
   }
   res.redirect('/paper');
 };
-
-
 
 // List
 exports.list = function(req, res){
@@ -42,15 +56,13 @@ exports.list = function(req, res){
   });
 };
 
-
 // View an paper
 // TODO merge this method
 exports.list2 = function(req, res){
 	console.log(req.params.id);
   Paper.findOne({_id:req.params.id}, function(err,paper){
     res.render('paper/show', {
-			
-      title: paper.doc.title,
+      title: paper.doc,
       paper: paper.doc
     });
   });
@@ -77,6 +89,3 @@ exports.del = function(req, res){
   });
   res.redirect('/paper');
 };
-
-
-

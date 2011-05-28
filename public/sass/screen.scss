@@ -30,6 +30,10 @@ body{
   color: $font-color;
 }
 
+#hidden{
+  visibility:hidden;
+}
+
 #top{
   padding-top:20px;
 	height: 110px;

@@ -8,11 +8,11 @@ var ObjectId = Schema.ObjectId;
 
 // Paper schema
 var Paper = new Schema({
-  candidates_Id	: {type : ObjectId},
-  referee_Id		: {type : ObjectId},		
+  candidates_Id	: {type : String},
+  referee_Id		: {type : String},
   position			: {type : String, default : '', required : true},
-  body					: {type : String, default : ''},
-  start_date		: {type : Date,	  default : ''},
+  body					: {type : String, default : '', required : true},
+  start_date		: {type : Date,	  default : '', required : true},
   end_date			: {type : Date,   default : ''},
   created_date  : {type : Date,   default : Date.now},
   updated_date  : {type : Date,   default : Date.now},
@@ -21,5 +21,4 @@ var Paper = new Schema({
 
 mongoose.model('Paper', Paper);
 
-//export the schama 
 exports.Paper = mongoose.model('Paper');

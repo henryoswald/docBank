@@ -14,14 +14,13 @@ email.SMTP = {
     user: "refbank123@gmail.com",
     pass: "referencebank"
 }
-  
 
 var app = module.exports = express.createServer();
 
 //TODO WTF does this do?
 require.paths.unshift(__dirname+'/config');
 
-// ------------ CONFIGERATION ----------
+// -------------- CONFIGERATION --------------
 
 // no sass in here becuse we use Compass compiler
 app.configure(function(){
@@ -40,7 +39,7 @@ app.configure('development', function(){
 });
 
 app.configure('production', function(){
-  app.use(express.errorHandler()); 
+  app.use(express.errorHandler());
 });
 
 // dynamic helper to give access to session and flash object generically in 
@@ -64,22 +63,22 @@ var User = require('./app/controllers/User_Controller.js');
 // ----------------- PATHS--------------
 app.get('/', function(req, res){
   res.redirect('/paper');
-	console.log(req.session);
-	console.log('-----------');
-	console.log(req.session.user);
-	
 });
 
-// Paper 
-app.get('/paper/new',Paper.createForm);
-app.post('/paper',Paper.create);
-app.get('/paper',Paper.list);
-app.get('/paper/:id',User.requiresLogin,Paper.list2);
-app.get('/paper/:id/edit',Paper.edit);
-app.del('/paper/:id',Paper.del);
+// Paper
+//
+app.get('/request/new', User.requiresLogin, Paper.requestForm);
+app.post('/request/new', User.requiresLogin, Paper.request);
 
-// User 
-app.get('/user', User.createForm);
+app.get('/paper/new', User.requiresLogin, Paper.createForm);
+app.post('/paper', User.requiresLogin, Paper.create);
+app.get('/paper', User.requiresLogin, Paper.list);
+app.get('/paper/:id', User.requiresLogin, Paper.list2);
+app.get('/paper/:id/edit', User.requiresLogin, Paper.edit);
+app.del('/paper/:id', User.requiresLogin, Paper.del);
+
+// User
+app.get('/register', User.createForm);
 app.post('/user', User.create);
 app.get('/login', User.loginForm);
 app.post('/login', User.login);
@@ -88,7 +87,6 @@ app.get('/logout', User.logout);
 app.get('/email', function(){
 	email.sendEmail('henry.oswald@gmail.com', 'subje', 'hello');
 });
-
 
 // Only listen on $ node app.js
 if (!module.parent) {
