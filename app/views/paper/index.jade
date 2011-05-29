@@ -6,7 +6,7 @@ div#papers.showgrid
 - each paper in papers
   div#paper
     div#paper_title
-      a(href='/paper/'+paper._id) #{paper.title}
+      a(href='/paper/'+paper._id) #{paper.position}
     div#paper_body
       #{paper.body}
     a(href='/paper/'+paper._id+'/edit') Edit

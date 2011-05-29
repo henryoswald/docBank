@@ -18,7 +18,7 @@ form(method="post",action="/request/new")
       Label End Date
       br
       input(type="date", name="paper[start_date]")
-    input(type="text", name="paper[candidates_Id]", value=session.user._id)#hidden
+    input(type="text", name="paper[candidate_Id]", value=session.user._id) hidden
 
   div.span-24
     button.button.standard(type="submit")

@@ -12,7 +12,6 @@ exports.requestForm = function(req, res){
 	console.log(' rendering request form');
 	res.render('paper/request/new', {
     title: 'Requesting Reference'
-  
 	});
 }
 
@@ -20,7 +19,7 @@ exports.request = function(req, res){
 	paper = new Paper(req.body.paper);
     paper.save(function(err){
 			console.log("Reference Created");
-			console.log(paper);	
+			console.log(paper.candidate_Id);	
 		});
 	res.redirect('/request/new');	
 };
@@ -45,10 +44,12 @@ exports.create = function(req, res){
   res.redirect('/paper');
 };
 
+var ObjectId = Paper.ObjectId;
+
 // List
 exports.list = function(req, res){
-	console.log("list");
-  Paper.find({}, function(err, docs) {
+
+	Paper.find({'candidate_Id': req.session.user._id}, function(err, docs) {
     res.render('paper/index', {
       title: 'List of papers',
       papers: docs

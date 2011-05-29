@@ -37,10 +37,11 @@ exports.loginForm = function(req,res){
 // adds user to session
 exports.login = function(req,res){
 	User.findOne({email: req.body.user.email, password: req.body.user.password}, function(err, user) {
-		console.log('found');
+
 		if(user) {
-			console.log('inside if');
+
 			req.session.user = user;
+			console.log('loged in '+ user._id);
 			res.redirect('/')
     } else {
       console.log('Failed login');

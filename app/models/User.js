@@ -17,3 +17,4 @@ var User = new Schema({
 mongoose.model('User', User);
 
 exports.User = mongoose.model('User');
+exports.ObjectId = ObjectId; //todo pop this in line 7?

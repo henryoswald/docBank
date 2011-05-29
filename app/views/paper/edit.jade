@@ -1,19 +1,26 @@
-h1= title
-h3 edit
-form(method="post",action="/paper")
-  p
-    label Title
-    br
-    input(type="text", name="paper[title]", value=paper.title)
+h1 Edit
 
-  p
-    label Body
+form(method="post",action="/paper")
+  div.span-24
+    label Referee Email
     br
-    textarea(name="paper[body]") #{paper.body}
-  
-  input(type="hidden", name="paper[_id]", value=paper._id)
-  
-  input(type="submit", value="Submit")
-  
-  a(href='/papers') Cancel
+    input(type="text", name="paper[position]", value=paper.position)
+  div.span-24
+    label Personal Message
+    br
+    textarea(name="email_body")
+  div.span-24
+    div.span-5
+      Label Start Date
+      br
+      input(type="date", name="paper[end_date]", value=paper.end_date)
+    div.span-5.last
+      Label End Date
+      br
+      input(type="date", name="paper[start_date]", value=paper.start_date)
+    input(type="text", name="paper[candidate_Id]", value=session.user._id) hidden
+
+  div.span-24
+    button.button.standard(type="submit")
+      | Submit
 
