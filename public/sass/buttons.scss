@@ -42,11 +42,17 @@ a.standard, button.standard {
   @include button-active-colors(#add5f7, #35478c, #35478c); 
   }
 
-a.positive, button.positive {
-  color: #83886d;
-  @include button-hover-colors(#529214, #e6efc2, #c6d880);
-  @include button-active-colors(black, #529214, #529214); 
-  }
+a.standard, button.standard {
+  color: #35478c;
+  @include button-hover-colors(#35478c, #add5f7, #35478c);
+  @include button-active-colors(#add5f7, #35478c, #35478c); 
+}
+
+#menu a {
+  color: #35478c;
+  @include button-hover-colors(#35478c, #add5f7, #35478c);
+  @include button-active-colors(#add5f7, #35478c, #35478c);
+}
 
 
 a.negative, button.negative {

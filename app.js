@@ -4,16 +4,8 @@ var sys = require('sys');
 var crypto = require('crypto');
 //var email = require('./node_modules/mailer/lib/node_mailer');
 
-var email = require('./utils/email');
+var utils = require('./utils/utils');
 
-email.SMTP = {
-    host: "smtp.gmail.com",
-    port: 465,
-    ssl: true,
-    use_authentication: true,
-    user: "refbank123@gmail.com",
-    pass: "referencebank"
-}
 
 var app = module.exports = express.createServer();
 
@@ -57,25 +49,23 @@ app.dynamicHelpers(
 );
 
 // ----------- Controller Objects ---------
-var Paper = require('./app/controllers/Paper_Controller.js');
+var Reference = require('./app/controllers/Reference_Controller.js');
 var User = require('./app/controllers/User_Controller.js');
 
 // ----------------- PATHS--------------
 app.get('/', function(req, res){
-  res.redirect('/paper');
+  res.redirect('/reference');
 });
 
-// Paper
+// Reference
 //
-app.get('/request/new', User.requiresLogin, Paper.requestForm);
-app.post('/request/new', User.requiresLogin, Paper.request);
+app.get('/reference/request/new', User.requiresLogin, Reference.requestForm);
+app.post('/reference/request/new', User.requiresLogin, Reference.request);
 
-app.get('/paper/new', User.requiresLogin, Paper.createForm);
-app.post('/paper', User.requiresLogin, Paper.create);
-app.get('/paper', User.requiresLogin, Paper.list);
-app.get('/paper/:id', User.requiresLogin, Paper.list2);
-app.get('/paper/:id/edit', User.requiresLogin, Paper.edit);
-app.del('/paper/:id', User.requiresLogin, Paper.del);
+app.get('/reference', User.requiresLogin, Reference.list);
+//app.get('/reference/:id', User.requiresLogin, Reference.show);
+app.get('/reference/:id/edit', User.requiresLogin, Reference.edit);
+app.del('/reference/:id', User.requiresLogin, Reference.del);
 
 // User
 app.get('/register', User.createForm);

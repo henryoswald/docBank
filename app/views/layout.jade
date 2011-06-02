@@ -10,15 +10,20 @@ html
       div#top.span-24
         div#logoArea.span-14
           a(href='/')
-            div#logo Reference Bank
-            div#subheading Give me your references
+            div#logo 
+              span#logo1 Reference 
+              span#logo2 Bank
+            div#subheading.hide Give me your references
         div#menu.span-10.last
-          div 
           -if(session.user)
-            a(href='/logout', class='span-1') logout
-            span #{session.user.email}   
+            a(href='/logout') Logout
           -else
-            a(href='/login', class='span-1') login
-            
-      div#main
+            a(href='/login') login
+          a(href='#') About
+          a(href='#') Contact  
+
+      hr
+      #sideBar.span-3.colborder
+        a(href="/reference/request/new") Request Reference
+      #main.span-21.last
         != body

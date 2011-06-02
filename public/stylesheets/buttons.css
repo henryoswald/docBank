@@ -109,23 +109,40 @@ a.standard:active, button.standard:active {
 }
 
 /* line 45, ../sass/buttons.scss */
-a.positive, button.positive {
-  color: #83886d;
+a.standard, button.standard {
+  color: #35478c;
 }
 /* line 62, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_buttons.scss */
-a.positive:hover, button.positive:hover {
-  background-color: #e6efc2;
-  border-color: #d6e890 #c6d880 #c6d880 #d6e890;
-  color: #529214;
+a.standard:hover, button.standard:hover {
+  background-color: #add5f7;
+  border-color: #45579c #35478c #35478c #45579c;
+  color: #35478c;
 }
 /* line 47, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_buttons.scss */
-a.positive:active, button.positive:active {
-  background-color: #529214;
-  border-color: #62a224 #529214 #529214 #62a224;
-  color: black;
+a.standard:active, button.standard:active {
+  background-color: #35478c;
+  border-color: #45579c #35478c #35478c #45579c;
+  color: #add5f7;
 }
 
-/* line 52, ../sass/buttons.scss */
+/* line 51, ../sass/buttons.scss */
+#menu a {
+  color: #35478c;
+}
+/* line 62, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_buttons.scss */
+#menu a:hover {
+  background-color: #add5f7;
+  border-color: #45579c #35478c #35478c #45579c;
+  color: #35478c;
+}
+/* line 47, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_buttons.scss */
+#menu a:active {
+  background-color: #35478c;
+  border-color: #45579c #35478c #35478c #45579c;
+  color: #add5f7;
+}
+
+/* line 58, ../sass/buttons.scss */
 a.negative, button.negative {
   color: #fbc2c4;
 }

@@ -1572,33 +1572,62 @@ body {
 /* line 37, ../sass/screen.scss */
 #top {
   padding-top: 20px;
-  height: 110px;
+  height: 80px;
 }
 
 /* line 42, ../sass/screen.scss */
 #logo {
-  color: #888888;
-  font: 60px/68px "AmaranthRegular", Arial, sans-serif;
+  font: 60px/68px "ChunkFiveRegular", Arial, sans-serif;
   letter-spacing: 0;
 }
 
-/* line 48, ../sass/screen.scss */
-#logoArea a {
+/* line 47, ../sass/screen.scss */
+#logo1 {
+  color: #024e76;
+}
+
+/* line 51, ../sass/screen.scss */
+#logo2 {
+  color: #f5b824;
+}
+
+/* line 55, ../sass/screen.scss */
+#top a {
   text-decoration: none;
   color: none;
 }
 
-/* line 53, ../sass/screen.scss */
+/* line 60, ../sass/screen.scss */
 #subheading {
   color: #888888;
   font: 20px/28px "AmaranthRegular", Arial, sans-serif;
   letter-spacing: 0;
 }
 
+/* line 66, ../sass/screen.scss */
+#menu a {
+  color: #024e76;
+  margin-top: 20px;
+  float: right;
+  margin-right: 50px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 6px;
+  font: 16px/22px "ChunkFiveRegular", Arial, sans-serif;
+}
+
 @font-face {
   font-family: 'AmaranthRegular';
   src: url("/fonts/amaranth/Amaranth-webfont.eot");
   src: url("/fonts/amaranth/Amaranth-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/amaranth/Amaranth-webfont.woff") format("woff"), url("/fonts/amaranth/Amaranth-webfont.ttf") format("truetype"), url("/fonts/amaranth/Amaranth-webfont.svg#AmaranthRegular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ChunkFiveRegular';
+  src: url("/fonts/ChunkFive/Chunkfive-webfont.eot");
+  src: url("/fonts/ChunkFive/Chunkfive-webfont.eot?#iefix") format("embedded-opentype"), url("/fonts/ChunkFive/Chunkfive-webfont.woff") format("woff"), url("/fonts/ChunkFive/Chunkfive-webfont.ttf") format("truetype"), url("/fonts/ChunkFive/Chunkfive-webfont.svg#ChunkFiveRegular") format("svg");
   font-weight: normal;
   font-style: normal;
 }

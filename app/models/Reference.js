@@ -6,8 +6,8 @@ mongoose.connect(settings.mongodb_url);
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
-// Paper schema
-var Paper = new Schema({
+// Reference schema
+var Reference = new Schema({
   candidate_Id	: {type : ObjectId},
   referee_Id		: {type : ObjectId},
   position			: {type : String, default : ''},
@@ -19,8 +19,8 @@ var Paper = new Schema({
 	filled_in			: {type: Boolean, default : false}
 });
 
-mongoose.model('Paper', Paper);
+mongoose.model('Reference', Reference);
 
-exports.Paper = mongoose.model('Paper');
+exports.Reference = mongoose.model('Reference');
 exports.ObjectId = ObjectId; //todo pop this in line 7?
 

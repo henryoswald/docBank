@@ -1,0 +1,13 @@
+h2 Your References
+
+div#references
+  table
+    tr
+      td Referee
+      td Date Requested
+        - each reference in references
+          tr
+            td
+              a(href=Reference_Controller.detial) #{reference.position}
+            td
+              a(href='/reference/'+reference._id) #{reference.position}
