@@ -1,0 +1,26 @@
+div 
+  h1 browse
+  - var month_names = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+  div#aboutReference.span-20
+    div.span-10
+      div
+        label Position:
+        #{reference.position}
+      div
+        label Referee:
+        #{reference.referee}
+    div.span-10.last
+      div.span-10.last
+        label Start Date : 
+        #{month_names[reference.start_date.getMonth()]} #{reference.start_date.getDate()}, #{reference.start_date.getFullYear()}
+      div.span-10.last
+        label End Date  :
+        #{month_names[reference.end_date.getMonth()]} #{reference.end_date.getDate()}, #{reference.end_date.getFullYear()}
+      div.span-10.last
+        label Last Edited :
+        #{month_names[reference.updated_date.getMonth()]} #{reference.created_date.getDate()}, #{reference.created_date.getFullYear()}
+
+  div
+    label Reference
+    #{reference.body}
+   

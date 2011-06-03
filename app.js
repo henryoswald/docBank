@@ -4,9 +4,6 @@ var sys = require('sys');
 var crypto = require('crypto');
 //var email = require('./node_modules/mailer/lib/node_mailer');
 
-var utils = require('./utils/utils');
-
-
 var app = module.exports = express.createServer();
 
 //TODO WTF does this do?
@@ -62,9 +59,11 @@ app.get('/', function(req, res){
 app.get('/reference/request/new', User.requiresLogin, Reference.requestForm);
 app.post('/reference/request/new', User.requiresLogin, Reference.request);
 
-app.get('/reference', User.requiresLogin, Reference.list);
-//app.get('/reference/:id', User.requiresLogin, Reference.show);
-app.get('/reference/:id/edit', User.requiresLogin, Reference.edit);
+app.get('/reference', User.requiresLogin, Reference.list); //lists that users references
+app.get('/reference/:id', User.requiresLogin, Reference.detail); //shows that reference in detial
+app.get('/reference/:id/edit', User.requiresLogin, Reference.editForm);
+app.post('/reference/:id/edit', User.requiresLogin, Reference.edit);
+
 app.del('/reference/:id', User.requiresLogin, Reference.del);
 
 // User
@@ -73,10 +72,6 @@ app.post('/user', User.create);
 app.get('/login', User.loginForm);
 app.post('/login', User.login);
 app.get('/logout', User.logout);
-
-app.get('/email', function(){
-	email.sendEmail('henry.oswald@gmail.com', 'subje', 'hello');
-});
 
 // Only listen on $ node app.js
 if (!module.parent) {

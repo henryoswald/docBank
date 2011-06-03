@@ -1,7 +1,8 @@
-var settings = require('../../config/settings');
+var common = require('../../common/common');
 
 var mongoose = require('mongoose');
-mongoose.connect(settings.mongodb_url);
+mongoose.connect(common.settings.mongodb_url);
+
 
 var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
@@ -15,6 +16,4 @@ var User = new Schema({
 });
 
 mongoose.model('User', User);
-
 exports.User = mongoose.model('User');
-exports.ObjectId = ObjectId; //todo pop this in line 7?

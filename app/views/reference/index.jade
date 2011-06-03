@@ -1,13 +1,19 @@
 h2 Your References
-
+- var month_names = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"); 
 div#references
   table
     tr
+      td Position
       td Referee
-      td Date Requested
+      td Start date
+      td End date
         - each reference in references
           tr
             td
-              a(href=Reference_Controller.detial) #{reference.position}
-            td
               a(href='/reference/'+reference._id) #{reference.position}
+            td
+              a(href='/reference/'+reference._id) #{reference.referee_Id}
+            td
+              a(href='/reference/'+reference._id) #{month_names[reference.start_date.getMonth()]} #{reference.start_date.getDate()}, #{reference.start_date.getFullYear()}
+            td
+              a(href='/reference/'+reference._id) #{month_names[reference.end_date.getMonth()]} #{reference.end_date.getDate()}, #{reference.end_date.getFullYear()}
