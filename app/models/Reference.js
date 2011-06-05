@@ -8,8 +8,6 @@ var ObjectId = Schema.ObjectId;
 
 // Reference schema
 var Reference = new Schema({
-  candidate_Id	: {type : ObjectId},
-  referee_Id		: {type : ObjectId},
   position			: {type : String, default : ''},
   body					: {type : String, default : ''},
   start_date		: {type : Date,	  default : ''},

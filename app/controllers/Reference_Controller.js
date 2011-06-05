@@ -23,25 +23,24 @@ exports.requestForm = function(req, res){
 exports.request = function(req, res){
 	reference = new Reference(req.body.reference);
     reference.save(function(err){
-			console.log('--------');
-
-			User.findOne({email:req.body.referee_email}, function(err, user) {
+		
+			User.findOne({email:req.body.referee_email}, function(err, referee) {
 					//add the reference id to the users refree list
-					if(user){
-						console.log('^^^^^^ email ^^^^^^^');
-						console.log(user.email);					
-						console.log('&&&&& referee_ids &&&&');
-						console.log(user.referee_ids);					
-						console.log('%%%%%%%%%%%');
-	
-						user.referee_ids.push(reference._id);
-						
-						//send and e-mail to the user asking them to fill it in
-						common.email.sendEmail(req.body.referee_email, 
-											req.session.user.email +' has requested a reference for ' + reference.position, 
-											'"'+req.body.email_body +'" <a href="'+common.settings.url+'reference/'+reference._id+'/edit"> click here</a>'
-										 );
+					if(referee){
+						//insert the new reference to the referee id
+						referee.referee_ids.push(reference._id);
+					}else{
+						//create a new referee e-mail
+						referee = new User();
+						referee.email = req.body.referee_email;
 					}
+					
+					referee.save();
+					//send and e-mail to the user asking them to fill it in
+					common.email.sendEmail(referee.referee_email, 
+										req.session.user.email +' has requested a reference for ' + reference.position, 
+										'"'+req.body.email_body +'" <a href="'+common.settings.url+'reference/'+reference._id+'/edit"> click here</a>'
+ 									 );
 			});
 		});
 	res.redirect('/reference');	
@@ -50,11 +49,19 @@ exports.request = function(req, res){
 
 // List
 exports.list = function(req, res){
-	Reference.find({'candidate_Id': req.session.user._id}, function(err, docs) {
-    res.render('reference/index', {
-      title: 'List of references',
-      references: docs,
-    });
+	User.findOne({'_id': req.session.user._id}, function(err, user) {
+		console.log(user.referee_ids);
+
+		for (i in user.referee_ids){
+			console.log('------');
+			console.log(i);
+		}
+			console.log('$$$$$');
+		
+			res.render('reference/index', {
+				title: 'List of references',
+				//references: docs,
+			});
   });
 };
 

@@ -11,7 +11,7 @@ var User = new Schema({
   email					: {type : String, default : ''},
   password			: {type : String, default : ''},
 	reference_ids : [ObjectId],
-	referee_ids	: [ObjectId]
+	referee_ids	  : [ObjectId]
 });
 
 mongoose.model('User', User);
