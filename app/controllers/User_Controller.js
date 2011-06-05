@@ -9,6 +9,16 @@ exports.requiresLogin = function(req, res, next){
 	}
 }
 
+// checks if user is loged in
+exports.isReferee = function(req, res, next){
+	if(req.session.user){
+		var user = req.session.user;		
+		console.log(user);	
+	}else{
+		res.redirect('login');				
+	}
+}
+
 //render register form
 exports.createForm = function(req, res){
   res.render('security/new', {
@@ -37,9 +47,7 @@ exports.loginForm = function(req,res){
 // adds user to session
 exports.login = function(req,res){
 	User.findOne({email: req.body.user.email, password: req.body.user.password}, function(err, user) {
-
 		if(user) {
-
 			req.session.user = user;
 			console.log('loged in '+ user._id);
 			res.redirect('/')

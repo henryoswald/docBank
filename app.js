@@ -54,17 +54,17 @@ app.get('/', function(req, res){
   res.redirect('/reference');
 });
 
+//User.requiresLogin
 // Reference
-//
-app.get('/reference/request/new', User.requiresLogin, Reference.requestForm);
-app.post('/reference/request/new', User.requiresLogin, Reference.request);
+app.get('/reference/request/new',User.requiresLogin, Reference.requestForm);
+app.post('/reference/request/new',User.requiresLogin, Reference.request);
 
-app.get('/reference', User.requiresLogin, Reference.list); //lists that users references
-app.get('/reference/:id', User.requiresLogin, Reference.detail); //shows that reference in detial
-app.get('/reference/:id/edit', User.requiresLogin, Reference.editForm);
-app.post('/reference/:id/edit', User.requiresLogin, Reference.edit);
+app.get('/reference', User.requiresLogin,  Reference.list); //lists that users references
+app.get('/reference/:id',User.requiresLogin, Reference.detail); //shows that reference in detial
+app.get('/reference/:id/edit',User.requiresLogin, Reference.editForm);
+app.post('/reference/:id/edit',User.requiresLogin, Reference.edit);
 
-app.del('/reference/:id', User.requiresLogin, Reference.del);
+app.del('/reference/:id', Reference.del);
 
 // User
 app.get('/register', User.createForm);

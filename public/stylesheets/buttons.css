@@ -125,24 +125,7 @@ a.standard:active, button.standard:active {
   color: #add5f7;
 }
 
-/* line 51, ../sass/buttons.scss */
-#menu a {
-  color: #35478c;
-}
-/* line 62, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_buttons.scss */
-#menu a:hover {
-  background-color: #add5f7;
-  border-color: #45579c #35478c #35478c #45579c;
-  color: #35478c;
-}
-/* line 47, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_buttons.scss */
-#menu a:active {
-  background-color: #35478c;
-  border-color: #45579c #35478c #35478c #45579c;
-  color: #add5f7;
-}
-
-/* line 58, ../sass/buttons.scss */
+/* line 52, ../sass/buttons.scss */
 a.negative, button.negative {
   color: #fbc2c4;
 }

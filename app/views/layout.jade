@@ -6,24 +6,32 @@ html
     link(rel='stylesheet', href='/stylesheets/print.css', media='print', rel='stylesheet', type='text/css')
     // [if IE] ><link href='/stylesheets/ie.css' media='screen, projection' rel='stylesheet' type='text/css' />  <![endif]   
     link(rel='stylesheet', href='/stylesheets/buttons.css', media='screen, projection', rel='stylesheet', type='text/css')
-    body.container
-      div#top.span-24
-        div#logoArea.span-14
-          a(href='/')
-            div#logo 
-              span#logo1 Reference 
-              span#logo2 Bank
-            div#subheading.hide Give me your references
-        div#menu.span-10.last
-          -if(session.user)
-            a(href='/logout') Logout
-          -else
-            a(href='/login') login
+    body
+      #content
+        #pageHeader
+          .container
+            div#logoArea.span-14
+              a(href='/')
+                div#logo 
+                  span#logo1 Reference 
+                  span#logo2 Bank
+                div#subheading.hide Give me your references
+            #topMenu.span-10.last
+              -if(session.user)
+                a(href='/logout') Logout
+              -else
+                a(href='/login') login
+              a(href='#') About
+              a(href='#') Contact  
+        .container#pageBody
+          #sideBar.span-3.colborder
+            a(href="/reference/request/new") Request Reference
+          #main.span-21.last
+            != body
+            #layout_footer
+      #pageFooter
+        .container
+          a(href='#') Terms Conditions
           a(href='#') About
-          a(href='#') Contact  
+          a(href='#') Contact
 
-      hr
-      #sideBar.span-3.colborder
-        a(href="/reference/request/new") Request Reference
-      #main.span-21.last
-        != body

@@ -1,3 +1,13 @@
+//import the stuff for fancy buttons
+@import "compass/utilities/general/float";
+@import "blueprint/buttons";
+
+//sticky footer
+@import "compass/layout/sticky-footer";
+
+//curve the corners of things
+@import "compass/css3/border-radius";
+
 // This import applies a global reset to any page that imports this stylesheet.
 @import "blueprint/reset";
 
@@ -14,6 +24,9 @@
 // configuration applied, uncomment:
 
 @include blueprint;
+@include sticky-footer(40px, "#content", "#layout_footer", "#pageFooter");
+
+
 
 // If you are doing a lot of stylesheet concatenation, it is suggested
 // that you scope your blueprint styles, so that you can better control
@@ -28,19 +41,29 @@ body.bp {
 body{
   background-color: $main-background-color;
   color: $font-color;
+  overflow:visible;
 }
 
 #hidden{
   visibility:hidden;
 }
 
-#top{
+#pageHeader{
   padding-top:20px;
-	height: 80px;
+	height: 50px;
+  margin-bottom:15px;
+  width:100%;
+  @include background-image(linear-gradient(darken($page_header,1%), $page_header));
 }
 
+#pageHeader a{
+  text-decoration:none;
+  color:none;
+}
+
+
 #logo{
-  font: 60px/68px 'ChunkFiveRegular', Arial, sans-serif;
+  font: 40px/48px 'ChunkFiveRegular', Arial, sans-serif;
   letter-spacing: 0;
 }
 
@@ -52,34 +75,42 @@ body{
   color: $logo_color2;  
 }
 
-#top a{
+#pageBody{
+
+}
+
+#pageFooter{
+  background-color:$pageFooter_color;
+}
+
+#pageFooter a{
   text-decoration:none;
-  color:none;
+  color:lighten($pageFooter_color, 20%);
+  padding-right:50px;
 }
 
-#subheading{
-  color:$Sub_Heading_logo_color;
-  font: 20px/28px 'AmaranthRegular', Arial, sans-serif;
-  letter-spacing: 0;
+#pageFooter a:hover{
+  color:lighten($pageFooter_color, 65%);
 }
 
-#menu a{
-  color:$menu_text_color;
-  margin-top:20px;
+#topMenu a{
+  color: $top_menu_text_color;
+  font-size:1.2em;
+	font-weight: bold;  
+  margin-top:10px;
   float:right;
-  margin-right:50px;
-  padding-left:6px;
-  padding-right:6px;
-  padding-top:6px;
-  
-  
-  font: 16px/22px 'ChunkFiveRegular', Arial, sans-serif;  
+  margin-right:40px;
+  padding-left:8px;
+  padding-right:8px;
+  padding-top:3px;
+  padding-bottom:3px;
+
+  @include border-radius(10px);
+
+  @include button-hover-colors(#FDF9FF, darken($page_header,10%), $page_header);
+  @include button-active-colors(white, #2c3540, $page_header);
+
 }
-
-
-#main{
-
-}  
 
 @font-face {
     font-family: 'AmaranthRegular';
@@ -103,5 +134,3 @@ body{
     font-style: normal;
 
 }
-
-

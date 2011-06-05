@@ -10,13 +10,26 @@ $blueprint-grid-margin: 10px;
 $blueprint-grid-width: ($blueprint-container-size + $blueprint-grid-margin) / $blueprint-grid-columns - $blueprint-grid-margin;
 
 
-//palet
-$main-background-color:#ffffff;
+//---------PALET-------
 
-$logo_color1:#024E76;
+$color5:#191f26;
+$color4:#2c3540;
+$color3:#4a738c;
+$color2:#e9eef3;
+$color1:#ffffff;
+
+//heading
+$page_header:#4a738c;
+$logo_color1:#ffffff;
 $logo_color2:#F5B824;
 $Sub_Heading_logo_color:#888888;
 
-$menu_text_color:#024E76;
+//main area
+$top_menu_text_color:#ffffff;
+
+$main-background-color:#ffffff;
 
 $font-color: #2E2E2E;
+
+//footer
+$pageFooter_color:$color5;

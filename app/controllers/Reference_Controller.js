@@ -1,4 +1,5 @@
 var Reference = require('../models/Reference.js').Reference;
+var User = require('../models/User.js').User;
 var common = require('../../common/common');
 
 // New reference
@@ -8,6 +9,7 @@ exports.createForm = function(req, res){
   });
 };
 
+
 //render the request form
 exports.requestForm = function(req, res){
 	console.log(' rendering request form');
@@ -16,14 +18,31 @@ exports.requestForm = function(req, res){
 	});
 }
 
+
 //do the request
 exports.request = function(req, res){
 	reference = new Reference(req.body.reference);
     reference.save(function(err){
-			common.email.sendEmail(req.body.referee_email, 
+			console.log('--------');
+
+			User.findOne({email:req.body.referee_email}, function(err, user) {
+					//add the reference id to the users refree list
+					if(user){
+						console.log('^^^^^^ email ^^^^^^^');
+						console.log(user.email);					
+						console.log('&&&&& referee_ids &&&&');
+						console.log(user.referee_ids);					
+						console.log('%%%%%%%%%%%');
+	
+						user.referee_ids.push(reference._id);
+						
+						//send and e-mail to the user asking them to fill it in
+						common.email.sendEmail(req.body.referee_email, 
 											req.session.user.email +' has requested a reference for ' + reference.position, 
 											'"'+req.body.email_body +'" <a href="'+common.settings.url+'reference/'+reference._id+'/edit"> click here</a>'
 										 );
+					}
+			});
 		});
 	res.redirect('/reference');	
 };

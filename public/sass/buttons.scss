@@ -48,12 +48,6 @@ a.standard, button.standard {
   @include button-active-colors(#add5f7, #35478c, #35478c); 
 }
 
-#menu a {
-  color: #35478c;
-  @include button-hover-colors(#35478c, #add5f7, #35478c);
-  @include button-active-colors(#add5f7, #35478c, #35478c);
-}
-
 
 a.negative, button.negative {
   color: #fbc2c4;

@@ -1238,7 +1238,32 @@ textarea {
   height: 250px;
 }
 
-/* line 21, ../sass/screen.scss */
+/* line 10, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
+html, body {
+  height: 100%;
+}
+
+/* line 12, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
+#content {
+  clear: both;
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin-bottom: -40px;
+}
+/* line 18, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
+#content #layout_footer {
+  height: 40px;
+}
+
+/* line 20, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/compass/stylesheets/compass/layout/_sticky-footer.scss */
+#pageFooter {
+  clear: both;
+  position: relative;
+  height: 40px;
+}
+
+/* line 34, ../sass/screen.scss */
 body.bp {
   line-height: 1.5;
   font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -1558,62 +1583,100 @@ body.bp .removed {
   color: white;
 }
 
-/* line 28, ../sass/screen.scss */
+/* line 41, ../sass/screen.scss */
 body {
   background-color: white;
   color: #2e2e2e;
+  overflow: visible;
 }
 
-/* line 33, ../sass/screen.scss */
+/* line 47, ../sass/screen.scss */
 #hidden {
   visibility: hidden;
 }
 
-/* line 37, ../sass/screen.scss */
-#top {
-  padding-top: 20px;
-  height: 80px;
-}
-
-/* line 42, ../sass/screen.scss */
-#logo {
-  font: 60px/68px "ChunkFiveRegular", Arial, sans-serif;
-  letter-spacing: 0;
-}
-
-/* line 47, ../sass/screen.scss */
-#logo1 {
-  color: #024e76;
-}
-
 /* line 51, ../sass/screen.scss */
-#logo2 {
-  color: #f5b824;
+#pageHeader {
+  padding-top: 20px;
+  height: 50px;
+  margin-bottom: 15px;
+  width: 100%;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #487089), color-stop(100%, #4a738c));
+  background-image: -webkit-linear-gradient(#487089, #4a738c);
+  background-image: -moz-linear-gradient(#487089, #4a738c);
+  background-image: -o-linear-gradient(#487089, #4a738c);
+  background-image: linear-gradient(#487089, #4a738c);
 }
 
-/* line 55, ../sass/screen.scss */
-#top a {
+/* line 59, ../sass/screen.scss */
+#pageHeader a {
   text-decoration: none;
   color: none;
 }
 
-/* line 60, ../sass/screen.scss */
-#subheading {
-  color: #888888;
-  font: 20px/28px "AmaranthRegular", Arial, sans-serif;
+/* line 65, ../sass/screen.scss */
+#logo {
+  font: 40px/48px "ChunkFiveRegular", Arial, sans-serif;
   letter-spacing: 0;
 }
 
-/* line 66, ../sass/screen.scss */
-#menu a {
-  color: #024e76;
-  margin-top: 20px;
+/* line 70, ../sass/screen.scss */
+#logo1 {
+  color: white;
+}
+
+/* line 74, ../sass/screen.scss */
+#logo2 {
+  color: #f5b824;
+}
+
+/* line 82, ../sass/screen.scss */
+#pageFooter {
+  background-color: #191f26;
+}
+
+/* line 86, ../sass/screen.scss */
+#pageFooter a {
+  text-decoration: none;
+  color: #415164;
+  padding-right: 50px;
+}
+
+/* line 92, ../sass/screen.scss */
+#pageFooter a:hover {
+  color: #b9c4d1;
+}
+
+/* line 96, ../sass/screen.scss */
+#topMenu a {
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 10px;
   float: right;
-  margin-right: 50px;
-  padding-left: 6px;
-  padding-right: 6px;
-  padding-top: 6px;
-  font: 16px/22px "ChunkFiveRegular", Arial, sans-serif;
+  margin-right: 40px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -o-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border-radius: 10px;
+}
+/* line 62, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_buttons.scss */
+#topMenu a:hover {
+  background-color: #38586b;
+  border-color: #5a839c #4a738c #4a738c #5a839c;
+  color: #fdf9ff;
+}
+/* line 47, ../../../../../../Library/Ruby/Gems/1.8/gems/compass-0.11.1/frameworks/blueprint/stylesheets/blueprint/_buttons.scss */
+#topMenu a:active {
+  background-color: #2c3540;
+  border-color: #5a839c #4a738c #4a738c #5a839c;
+  color: white;
 }
 
 @font-face {
