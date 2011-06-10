@@ -1,18 +1,19 @@
 {
-  "name": "noobjs",
-  "description": "A demo app in nodejs illustrating use of express, jade and mogoose",
+  "name": "referenceBank",
+  "description": "A web app to manage references",
   "version": "0.0.1",
   "homepage": "",
-  "author": "Madhusudhan M S (http://twitter.com/madhums)",
+  "author": "Henry Oswald (henryoswald.me)",
   "directories": {
     "public": "./public"
   },
   "engines": {
-    "node": ">= 0.4.2"
+    "node": ">= 0.4.8"
   },
   "dependencies": {
-    "express": "2.0.0beta",
+    "express": "2.3.4",
     "mongoose": "1.1.2",
-    "jade": "0.6.3"
+    "jade": "0.6.3",
+	"nodemailer": "0.1.15"
   }
 }
