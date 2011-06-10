@@ -26,7 +26,7 @@ exports.request = function(req, res){
 			//add the reference id to the users refree list
 			if(user){
 				//insert the new reference to the referee id
-				user.references.push(reference);
+				user.references.push(reference._id);
 				user.save();
 			};
 	});

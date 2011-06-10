@@ -5,7 +5,7 @@ exports.requiresLogin = function(req, res, next){
 	if(req.session.user){
 		next();
 	}else{
-		res.redirect('login');				
+		res.redirect('login?redir='+req.url);				
 	}
 }
 
@@ -34,13 +34,15 @@ exports.create = function(req, res){
       console.log("User Created");
       console.log(user);			
     });
-	res.redirect('/user');
+	res.redirect('/');
 };
 
 // redner login form
 exports.loginForm = function(req,res){
+	console.log(req.query);
 	res.render('security/login', {
       title: 'login',
+			redir: req.query.redir
 	});
 }
 
