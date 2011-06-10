@@ -11,7 +11,7 @@ var ObjectId = Schema.ObjectId;
 var User = new Schema({
   email					: {type : String, default : ''},
   password			: {type : String, default : ''},
-	reference_ids	: [ObjectId]
+	references	  : [Reference]
 });
 
 mongoose.model('User', User);

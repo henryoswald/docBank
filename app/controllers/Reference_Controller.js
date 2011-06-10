@@ -24,9 +24,12 @@ exports.request = function(req, res){
 	reference = new Reference(req.body.reference);
 	User.findOne({'_id': req.session.user._id}, function(err, user) {
 			//add the reference id to the users refree list
+			console.log(reference.position);
+			console.log(reference.created_date);
+			
 			if(user){
 				//insert the new reference to the referee id
-				user.references.push(reference._id);
+				user.references.push(reference);
 				user.save();
 			};
 	});
