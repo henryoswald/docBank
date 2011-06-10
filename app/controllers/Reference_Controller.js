@@ -22,27 +22,14 @@ exports.requestForm = function(req, res){
 //do the request
 exports.request = function(req, res){
 	reference = new Reference(req.body.reference);
-    reference.save(function(err){
-		
-			User.findOne({email:req.body.referee_email}, function(err, referee) {
-					//add the reference id to the users refree list
-					if(referee){
-						//insert the new reference to the referee id
-						referee.referee_ids.push(reference._id);
-					}else{
-						//create a new referee e-mail
-						referee = new User();
-						referee.email = req.body.referee_email;
-					}
-					
-					referee.save();
-					//send and e-mail to the user asking them to fill it in
-					common.email.sendEmail(referee.referee_email, 
-										req.session.user.email +' has requested a reference for ' + reference.position, 
-										'"'+req.body.email_body +'" <a href="'+common.settings.url+'reference/'+reference._id+'/edit"> click here</a>'
- 									 );
-			});
-		});
+	User.findOne({'_id': req.session.user._id}, function(err, user) {
+			//add the reference id to the users refree list
+			if(user){
+				//insert the new reference to the referee id
+				user.references.push(reference._id);
+				user.save();
+			};
+	});
 	res.redirect('/reference');	
 };
 
@@ -50,17 +37,9 @@ exports.request = function(req, res){
 // List
 exports.list = function(req, res){
 	User.findOne({'_id': req.session.user._id}, function(err, user) {
-		console.log(user.referee_ids);
-
-		for (i in user.referee_ids){
-			console.log('------');
-			console.log(i);
-		}
-			console.log('$$$$$');
-		
 			res.render('reference/index', {
 				title: 'List of references',
-				//references: docs,
+				references: user.references
 			});
   });
 };
@@ -137,4 +116,11 @@ exports.del = function(req, res){
 //
 //var ObjectId = Reference.ObjectId;
 //
+
+
+				//send and e-mail to the user asking them to fill it in
+		//			common.email.sendEmail(referee.referee_email, 
+		//								req.session.user.email +' has requested a reference for ' + reference.position, 
+		//								'"'+req.body.email_body +'" <a href="'+common.settings.url+'reference/'+reference._id+'/edit"> click here</a>'
+ 		//							 );
 

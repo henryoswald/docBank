@@ -1,4 +1,5 @@
 var common = require('../../common/common');
+var Reference = require('../models/Reference.js').Reference;
 
 var mongoose = require('mongoose');
 mongoose.connect(common.settings.mongodb_url);
@@ -10,8 +11,7 @@ var ObjectId = Schema.ObjectId;
 var User = new Schema({
   email					: {type : String, default : ''},
   password			: {type : String, default : ''},
-	reference_ids : [ObjectId],
-	referee_ids	  : [ObjectId]
+	references		: [Reference]
 });
 
 mongoose.model('User', User);
