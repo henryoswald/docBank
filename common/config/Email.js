@@ -20,4 +20,3 @@ exports.sendEmail = function(receiver, sub, msg){
 			console.log("Message "+(success?"sent":"failed"));
 		});
 }
-
