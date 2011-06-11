@@ -74,7 +74,8 @@ app.post('/login', User.login);
 app.get('/logout', User.logout);
 
 // Only listen on $ node app.js
+var port = process.env.PORT || 3000;
 if (!module.parent) {
-  app.listen(3000);
+  app.listen(port);
   console.log("Running on port %d", app.address().port)
 }
