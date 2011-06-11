@@ -7,7 +7,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.ObjectId;
 
 // Reference schema
-var Reference = new Schema({
+var ReferenceSchema = new Schema({
   position			: {type : String, default : ''},
   body					: {type : String, default : ''},
   start_date		: {type : Date,	  default : ''},
@@ -17,5 +17,6 @@ var Reference = new Schema({
 	filled_in			: {type: Boolean, default : false}
 });
 
-mongoose.model('Reference', Reference);
+mongoose.model('Reference', ReferenceSchema);
 exports.Reference = mongoose.model('Reference');
+exports.ReferenceSchema = ReferenceSchema;

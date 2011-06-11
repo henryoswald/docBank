@@ -29,7 +29,8 @@ exports.request = function(req, res){
 			
 			if(user){
 				//insert the new reference to the referee id
-				user.references.push(reference);
+				r = new Reference({position: 'ppp'});
+				user.references.push(r);
 				user.save();
 			};
 	});
