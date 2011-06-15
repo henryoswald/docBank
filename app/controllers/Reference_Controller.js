@@ -22,15 +22,18 @@ exports.requestForm = function(req, res){
 //do the request
 exports.request = function(req, res){
 	reference = new Reference(req.body.reference);
+	//console.log('-------body------');
+	//console.log(req.body.reference);
 	User.findOne({'_id': req.session.user._id}, function(err, user) {
 			//add the reference id to the users refree list
-			console.log(reference.position);
-			console.log(reference.created_date);
+			//console.log(reference.position);
+			//console.log(reference.created_date);
 			
 			if(user){
 				//insert the new reference to the referee id
 				r = new Reference({position: 'ppp'});
-				user.references.push({position: 'ppp'});
+				console.log(r.doc);
+user.references.push(r.doc);
 				user.save();
 			};
 	});
