@@ -1,0 +1,46 @@
+" Press ? for help
+
+>----------Bookmarks----------
+>bank <Projects/referenceBank/
+>nodeCrud </Projects/nodeCrud/
+>nodePad <ry/Projects/nodePad/
+
+.. (up a dir)
+</henry/Projects/referenceBank/
+|~app/
+| |+controllers/
+| |+models/
+| `~views/
+|   |~reference/
+|   | |~request/
+|   | | `-new.jade
+|   | |-detail.jade
+|   | |-edit.jade
+|   | `-index.jade
+|   |+security/
+|   |-index.jade
+|   `-layout.jade
+|~common/
+| |+config/
+| |+utils/
+| `-common.js
+|+node_modules/
+|~public/
+| |+fonts/
+| |+images/
+| |~sass/
+| | |+partials/
+| | |-buttons.scss
+| | |-ie.scss
+| | |-print.scss
+| | `-screen.scss
+| |+stylesheets/
+| `-config.rb
+|~test/
+| `-app.test.js
+|-app.js
+|-package.json
+|-Procfile
+|-Procfile.js
+|-public.zip
+`-README.txt

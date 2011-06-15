@@ -10,28 +10,31 @@ html
       #content
         #pageHeader
           .container
-            div#logoArea.span-14
+            div#logoArea.span-10
               a(href='/')
                 div#logo 
                   span#logo1 Reference 
                   span#logo2 Bank
                 div#subheading.hide Give me your references
-            #topMenu.span-10.last
+            #topMenu.span-14.last
               -if(session.user)
                 a(href='/logout') Logout
+                a(href="/reference/request/new") Request Reference
+                a(href='#') Your References
               -else
-                a(href='/login') login
-              a(href='#') About
-              a(href='#') Contact  
+                a(href='/login') Login
         .container#pageBody
-          #sideBar.span-3.colborder
-            a(href="/reference/request/new") Request Reference
           #main.span-21.last
             != body
             #layout_footer
       #pageFooter
         .container
-          a(href='#') Terms Conditions
-          a(href='#') About
-          a(href='#') Contact
+          .span-4
+            |
+          .span-7  
+            a(href='#') Terms Conditions
+          .span-7
+            a(href='#') About
+          .span-1
+            a(href='#') Contact
 
