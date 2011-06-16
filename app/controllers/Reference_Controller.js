@@ -46,22 +46,25 @@ exports.list = function(req, res){
   });
 };
 
+//	var reference = Reference.findEmbedded(req.params.id);
 
 // View an reference in detial
 exports.detail = function(req, res){
-  User.findOne({'references._id':req.params.id}, function(err,user){
+  User.findOne({'references._id':'4df931fb9d76810000000006'}, function(err,user){
+		sys.puts(('User:'+user).red);		
 		var reference;
-		for(var i = 0; i< user.doc.references.length  ; i++){
-			if(user.doc.references[i]._id=req.params.id){
-					reference = user.doc.references[i];
-			}
-		}
+		//for(var i = 0; i< user.doc.references.length  ; i++){
+	//		if(user.doc.references[i]._id=req.params.id){
+	//				reference = user.doc.references[i];
+	//		}
+	//	}
 	  res.render('reference/detail', {
 			title: 'Reference x',
       reference: reference
     });
   });
 };
+
 
 
 // Edit an reference

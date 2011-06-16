@@ -1,4 +1,7 @@
 var common = require('../../common/common');
+var sys = require('../../common/common').sys;
+
+var User = require('./User.js').User;
 
 var mongoose = require('mongoose');
 mongoose.connect(common.settings.mongodb_url);
@@ -18,6 +21,20 @@ var ReferenceSchema = new Schema({
 
 });
 
+ReferenceSchema.static('findEmbedded', function(_id ,callback){
+	console.log('id:'+_id);
+//	User.findOne({'references._id':_id}, function(err,user){
+	User.findOne({"references._id":"4df931fb9d76810000000006"}, function(err,user){
+		
+		sys.puts(('User:'+user).red);
+		for(var i = 0; i< user.doc.references.length; i++){
+			if(user.doc.references[i]._id=req.params.id){
+					return user.doc.references[i];
+			}
+		}
+		
+	},callback);
+});
 
 mongoose.model('Reference', ReferenceSchema);
 exports.Reference = mongoose.model('Reference');
