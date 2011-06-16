@@ -1,5 +1,26 @@
 var User = require('../models/User.js').User;
+var Common = require('../../common/common');
 
+// adds user to session
+exports.login = function(req,res){
+	User.findOne({email: req.body.user.email, password: req.body.user.password}, function(err, user) {
+		if(user) {
+			req.session.user = user;
+			Common.sys.puts((user.email+' loged in ('+ user._id+')').blue);
+			res.redirect(req.body.redir ? req.body.redir : '/') //if there is a redir use it if not go home
+    } else {
+      console.log('Failed login');
+      res.redirect('/login')
+    }
+  })
+}
+
+// redner login form
+exports.loginForm = function(req,res){
+	res.render('security/login',
+					 	{ title: 'login', redir: req.query.redir});
+}
+//req.query.redir
 // checks if user is loged in
 exports.requiresLogin = function(req, res, next){
 	if(req.session.user){
@@ -37,28 +58,7 @@ exports.create = function(req, res){
 	res.redirect('/');
 };
 
-// redner login form
-exports.loginForm = function(req,res){
-	console.log(req.query);
-	res.render('security/login', {
-      title: 'login',
-			redir: req.query.redir
-	});
-}
 
-// adds user to session
-exports.login = function(req,res){
-	User.findOne({email: req.body.user.email, password: req.body.user.password}, function(err, user) {
-		if(user) {
-			req.session.user = user;
-			console.log('loged in '+ user._id);
-			res.redirect('/')
-    } else {
-      console.log('Failed login');
-      res.redirect('/login')
-    }
-  })
-}
 
 // destroy session
 exports.logout = function(req,res){

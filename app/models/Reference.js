@@ -15,7 +15,9 @@ var ReferenceSchema = new Schema({
   created_date  : {type : Date,   default : Date.now},
   updated_date  : {type : Date,   default : Date.now},
 	filled_in			: {type: Boolean, default : false}
+
 });
+
 
 mongoose.model('Reference', ReferenceSchema);
 exports.Reference = mongoose.model('Reference');

@@ -1,6 +1,7 @@
 var Reference = require('../models/Reference.js').Reference;
 var User = require('../models/User.js').User;
 var common = require('../../common/common');
+var sys = require('../../common/common').sys;
 
 // New reference
 exports.createForm = function(req, res){
@@ -22,18 +23,12 @@ exports.requestForm = function(req, res){
 //do the request
 exports.request = function(req, res){
 	reference = new Reference(req.body.reference);
-	//console.log('-------body------');
-	//console.log(req.body.reference);
 	User.findOne({'_id': req.session.user._id}, function(err, user) {
-			//add the reference id to the users refree list
-			//console.log(reference.position);
-			//console.log(reference.created_date);
-			
 			if(user){
 				//insert the new reference to the referee id
 				r = new Reference({position: 'ppp'});
 				console.log(r.doc);
-user.references.push(r.doc);
+				user.references.push(r.doc);
 				user.save();
 			};
 	});
@@ -54,10 +49,16 @@ exports.list = function(req, res){
 
 // View an reference in detial
 exports.detail = function(req, res){
-  Reference.findOne({_id:req.params.id}, function(err,reference){
-    res.render('reference/detail', {
-      title: reference.doc,
-      reference: reference.doc
+  User.findOne({'references._id':req.params.id}, function(err,user){
+		var reference;
+		for(var i = 0; i< user.doc.references.length  ; i++){
+			if(user.doc.references[i]._id=req.params.id){
+					reference = user.doc.references[i];
+			}
+		}
+	  res.render('reference/detail', {
+			title: 'Reference x',
+      reference: reference
     });
   });
 };

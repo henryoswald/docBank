@@ -6,35 +6,34 @@ html
     link(rel='stylesheet', href='/stylesheets/print.css', media='print', rel='stylesheet', type='text/css')
     // [if IE] ><link href='/stylesheets/ie.css' media='screen, projection' rel='stylesheet' type='text/css' />  <![endif]   
     link(rel='stylesheet', href='/stylesheets/buttons.css', media='screen, projection', rel='stylesheet', type='text/css')
-    body
-      #content
-        #pageHeader
-          .container
-            div#logoArea.span-10
-              a(href='/')
-                div#logo 
-                  span#logo1 Reference 
-                  span#logo2 Bank
-                div#subheading.hide Give me your references
-            #topMenu.span-14.last
-              -if(session.user)
-                a(href='/logout') Logout
-                a(href="/reference/request/new") Request Reference
-                a(href='#') Your References
-              -else
-                a(href='/login') Login
-        .container#pageBody
-          #main.span-21.last
-            != body
-            #layout_footer
-      #pageFooter
+  body
+    #content
+      #pageHeader
         .container
-          .span-4
-            |
-          .span-7  
-            a(href='#') Terms Conditions
-          .span-7
-            a(href='#') About
-          .span-1
-            a(href='#') Contact
-
+          div#logoArea.span-10
+            a(href='/')
+              div#logo 
+                span#logo1 Reference 
+                span#logo2 Bank
+              div#subheading.hide Give me your references
+          #topMenu.span-14.last
+            -if(session.user)
+              a(href='/logout') Logout
+              a(href="/reference/request/new") Request Reference
+              a(href='#') Your References
+            -else
+              a(href='/login') Login
+      .container#pageBody
+        #main.span-21.last
+          != body
+          #layout_footer
+    #pageFooter
+      .container
+        .span-4
+          |
+        .span-7  
+          a(href='#') Terms Conditions
+        .span-7
+          a(href='#') About
+        .span-1
+          a(href='#') Contact
