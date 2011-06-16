@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "express": "2.3.4",
-    "mongoose": "1.1.2",
+    "mongoose": "1.4.0",
     "jade": "0.6.3",
 	"nodemailer": "0.1.15"
   }
