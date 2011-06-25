@@ -10,7 +10,7 @@ html
     #content
       #pageHeader
         .container
-          div#logoArea.span-10
+          #logoArea.span-10
             a(href='/')
               div#logo 
                 span#logo1 Reference 
@@ -23,7 +23,7 @@ html
               a(href='#') Your References
             -else
               a(href='/login') Login
-      .container#pageBody
+      #pageBody.container
         #main.span-21.last
           != body
           #layout_footer
