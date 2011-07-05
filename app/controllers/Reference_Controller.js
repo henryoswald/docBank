@@ -3,6 +3,10 @@ var User = require('../models/User.js').User;
 var common = require('../../common/common');
 var sys = require('../../common/common').sys;
 
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var ObjectId = require('mongoose').Types.ObjectId;
+
 // New reference
 exports.createForm = function(req, res){
   res.render('reference/new', {
@@ -50,7 +54,7 @@ exports.list = function(req, res){
 
 // View an reference in detial
 exports.detail = function(req, res){
-  User.findOne({'references._id':'4df931fb9d76810000000006'}, function(err,user){
+  User.findOne({'references._id':new ObjectId('4e136e38c7d4b32e70000004')}, function(err,user){
 		sys.puts(('User:'+user).red);		
 		var reference;
 		//for(var i = 0; i< user.doc.references.length  ; i++){
@@ -60,7 +64,7 @@ exports.detail = function(req, res){
 	//	}
 	  res.render('reference/detail', {
 			title: 'Reference x',
-      reference: reference
+      reference: user.references[0]
     });
   });
 };
