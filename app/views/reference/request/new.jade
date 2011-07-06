@@ -1,5 +1,3 @@
-h1 Request Reference 
-
 form(method="post",action="/reference/request/new")
   div.span-24
     label Referee Email
@@ -27,3 +25,54 @@ form(method="post",action="/reference/request/new")
   div.span-24
     button.button.standard(type="submit")
       | Submit
+
+
+.block
+  .block_head
+    .bheadl
+    .bheadr
+    h2 Request Reference
+  .block_content
+    form(method="post",action="/reference/request/new")
+      p
+        label Referee Email:
+        br
+        input.text.medium(type='email', name="referee_email")
+      p
+        label Company:
+        br
+        input.text.medium(type='text', name="reference[company]")
+      p
+        label Position:
+        br
+        input.text.medium(type='text', name="reference[position]")
+      p
+        label Anual Salary:
+        br
+        input.text.small(type='text', name="reference[salary]")
+        | &nbsp;&nbsp;
+        label per:
+        select.styled
+          option Year
+          option Month
+          option Week
+          option Day
+          option Hour
+      p
+        label Start date:
+        input(type='text', class="text date_picker", name="reference[start_date]")
+				| &nbsp;&nbsp;
+        label End date:
+        input.text.date_picker(type='text', name="reference[end_date]")
+      p
+        label Personal Message to referee:
+        br
+        input.text.big(type='text', name="email_bodyy")
+      p
+        input.submit.small(type='submit', value='Submit')
+      input(type="text", name="reference[candidate_id]", value=session.user._id)
+
+  // .block_content ends 
+  .bendl
+  .bendr
+

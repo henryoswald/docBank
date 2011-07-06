@@ -5,11 +5,11 @@ html
     meta(http-equiv='Content-Type', content='text/html; charset=utf-8')
     title= title
     style(type='text/css', media='all')
-      @import url("adminus/css/style.css");
-      @import url("adminus/css/jquery.wysiwyg.css");
-      @import url("adminus/css/facebox.css");
-      @import url("adminus/css/visualize.css");
-      @import url("adminus/css/date_input.css");
+      @import url("/adminus/css/style.css");
+      @import url("/adminus/css/jquery.wysiwyg.css");
+      @import url("/adminus/css/facebox.css");
+      @import url("/adminus/css/visualize.css");
+      @import url("/adminus/css/date_input.css");
     // [if IE] ><link href='adminus/css/ie.css' media='all' rel='stylesheet' type='text/css' />  <![endif] 
   body
   #hld
@@ -19,17 +19,31 @@ html
         .hdrl
         .hdrr
         h1
-          a(href='#') Adminus
+          a(href='/') Reference Bank
         ul#nav
           li
-            a(href='#') References
+            a(href='/reference') References
           li.active
-            a(href='#') Request
+            a(href='/reference/request/new') Request
         p.user
-          | Hello,
-          a(href='#') John
-          | |
-          a(href='index.html') Logout
+          -if(session.user)
+            | Hello, #{session.user.name}
+            a(href='/logout') Logout
+          -else
+            a(href='/login') Login
       // #header ends
-      != body 
-
+      != body
+  // [if IE] ><link href='adminus/js/excanvas.js' media='all' rel='stylesheet' type='text/javascript' />  <![endif]   
+  script(type='text/javascript', src='/adminus/js/jquery.js')  
+  script(type='text/javascript', src='/adminus/js/jquery.img.preload.js')
+  script(type='text/javascript', src='/adminus/js/jquery.filestyle.mini.js')
+  script(type='text/javascript', src='/adminus/js/jquery.wysiwyg.js')
+  script(type='text/javascript', src='/adminus/js/jquery.date_input.pack.js')
+  script(type='text/javascript', src='/adminus/js/facebox.js')
+  script(type='text/javascript', src='/adminus/js/jquery.visualize.js')
+  script(type='text/javascript', src='/adminus/js/jquery.visualize.tooltip.js')
+  script(type='text/javascript', src='/adminus/js/jquery.select_skin.js')
+  script(type='text/javascript', src='/adminus/js/jquery.tablesorter.min.js')
+  script(type='text/javascript', src='/adminus/js/ajaxupload.js')
+  script(type='text/javascript', src='/adminus/js/jquery.pngfix.js')
+  script(type='text/javascript', src='/adminus/js/custom.js')
