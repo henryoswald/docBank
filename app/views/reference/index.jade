@@ -22,6 +22,7 @@
             th Company
             th Start Date
             th End Date
+            th Confirmed            
         tbody
           - each reference in references
             tr
@@ -35,6 +36,11 @@
                 #{month_names[reference.start_date.getMonth()]} #{reference.start_date.getDate()}, #{reference.start_date.getFullYear()}
               td
                 #{month_names[reference.end_date.getMonth()]} #{reference.end_date.getDate()}, #{reference.end_date.getFullYear()}
+              td
+                - if (reference.confirmed==true)
+                  | yes
+                - else
+                  | no
       .tableactions
         select
           option Actions

@@ -402,7 +402,16 @@ a:hover {
 	margin-bottom: 10px;
 	}
 
-.block .block_content h3 {
+.detialLabel{
+	font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #666;
+	margin-bottom: 5px;
+
+}
+
+.block .block_content h3{
 	font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	font-weight: bold;
@@ -1001,3 +1010,4 @@ a:hover {
 	float: right;
 	text-align: right;
 	}
+

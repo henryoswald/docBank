@@ -32,6 +32,9 @@ html
           -else
             a(href='/login') Login
       // #header ends
+      - var messages = flashMessages();
+      - each message in messages
+        h2 #{message}
       != body
   // [if IE] ><link href='adminus/js/excanvas.js' media='all' rel='stylesheet' type='text/javascript' />  <![endif]   
   script(type='text/javascript', src='/adminus/js/jquery.js')  

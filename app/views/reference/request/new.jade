@@ -1,32 +1,3 @@
-form(method="post",action="/reference/request/new")
-  div.span-24
-    label Referee Email
-    br
-    input(type="text", name="referee_email")
-  div.span-24
-    label Position
-    br
-    input(type="text", name="reference[position]")
-  div.span-24
-    label Personal Message
-    br
-    textarea(name="email_body")
-  div.span-24
-    div.span-5
-      Label Start Date
-      br
-      input(type="date", name="reference[end_date]")
-    div.span-5.last
-      Label End Date
-      br
-      input(type="date", name="reference[start_date]")
-    input(type="text", name="reference[candidate_id]", value=session.user._id)#hidden
-
-  div.span-24
-    button.button.standard(type="submit")
-      | Submit
-
-
 .block
   .block_head
     .bheadl
@@ -61,16 +32,20 @@ form(method="post",action="/reference/request/new")
       p
         label Start date:
         input(type='text', class="text date_picker", name="reference[start_date]")
-				| &nbsp;&nbsp;
+        |  &nbsp;&nbsp;
         label End date:
         input.text.date_picker(type='text', name="reference[end_date]")
       p
+        label Reason for leaving:
+        br
+        input.text.big(type='text', name="reference[leaving_reason]")
+      p
         label Personal Message to referee:
         br
-        input.text.big(type='text', name="email_bodyy")
+        input.text.big(type='text', name="email_body")
       p
         input.submit.small(type='submit', value='Submit')
-      input(type="text", name="reference[candidate_id]", value=session.user._id)
+      input(type="hidden", name="reference[candidate_id]", value=session.user._id)
 
   // .block_content ends 
   .bendl

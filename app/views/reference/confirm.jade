@@ -1,0 +1,45 @@
+.block
+  .block_head
+    .bheadl
+    .bheadr
+    h2 Request Reference
+  .block_content
+    form(method="post", action="/reference/"+reference._id+"/edit")
+      p
+        label Company:
+        br
+        input.text.medium(type='text', name="reference[company]", value=reference.doc.company )
+      p
+        label Position:
+        br
+        input.text.medium(type='text', name="reference[position]", value=reference.doc.position)
+      p
+        label Anual Salary:
+        br
+        input.text.small(type='text', name="reference[salary]", value=reference.doc.salary)
+        | &nbsp;&nbsp;
+        label per:
+        select.styled
+          option Year
+          option Month
+          option Week
+          option Day
+          option Hour
+      p
+        label Start date:
+        input(type='text', class="text date_picker", name="reference[start_date]", value=reference.doc.start_date)
+        |  &nbsp;&nbsp;
+        label End date:
+        input.text.date_picker(type='text', name="reference[end_date]", value=reference.doc.end_date)
+      p
+        label Reason for leaving:
+        br
+        input.text.big(type='text', name="reference[leaving_reason]", value=reference.doc.leaving_reason)
+      p
+        input.text.big(type='hidden', name="reference[confirmed]", value="true")
+        input.submit.small(type='submit', value='Submit')
+  // .block_content ends 
+  .bendl
+  .bendr
+
+
