@@ -17,23 +17,10 @@ var ReferenceSchema = new Schema({
   end_date			: {type : Date,   default : ''},
   created_date  : {type : Date,   default : Date.now},
   updated_date  : {type : Date,   default : Date.now},
-	filled_in			: {type: Boolean, default : false}
-
-});
-
-ReferenceSchema.static('findEmbedded', function(_id ,callback){
-	console.log('id:'+_id);
-//	User.findOne({'references._id':_id}, function(err,user){
-	User.findOne({"references._id":"4df931fb9d76810000000006"}, function(err,user){
-		
-		sys.puts(('User:'+user).red);
-		for(var i = 0; i< user.doc.references.length; i++){
-			if(user.doc.references[i]._id=req.params.id){
-					return user.doc.references[i];
-			}
-		}
-		
-	},callback);
+	filled_in			: {type : Boolean, default : false},
+  candidate_id  : {type : ObjectId},
+  access_ids    : [ObjectId],
+  referee_id    : {type : ObjectId}
 });
 
 mongoose.model('Reference', ReferenceSchema);
