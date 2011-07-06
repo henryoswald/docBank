@@ -56,6 +56,12 @@ app.get('/', function(req, res){
 
 //User.requiresLogin
 // Reference
+app.get('/test', function(req, res){
+ res.render('test', {
+    title: 'Requesting Reference'
+  });
+});
+ 
 app.get('/reference/request/new',User.requiresLogin, Reference.requestForm);
 app.post('/reference/request/new',User.requiresLogin, Reference.request);
 

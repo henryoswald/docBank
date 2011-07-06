@@ -1,14 +1,27 @@
-h1 Login
-
-form(method="post",action="/login")
-  div.span-24
-    label Email
-    br
-    input(type="text", name="user[email]")
-  div.span-24
-    label password
-    br
-    input(name="user[password]", type='password')
-  input(name="redir", type="hidden", value=redir)
-  input(type="submit", value="Submit")
- 
+.block.small.center.login
+  .block_head
+    .bheadl
+    .bheadr
+    h2 Login
+    ul
+      li
+        a(href='#') back to the site
+  // .block_head ends 
+  .block_content
+    form(method="post",action="/login")
+      p
+        label Email:
+        br
+        input.text(name="user[email]",type="text")
+      p
+        label Password:
+        br
+        input.text(name="user[password]", type='password')
+      p
+        input(name="redir", type="hidden", value=redir)
+        input.submit(type='submit', value='Login')
+        input#rememberme.checkbox(type='checkbox', checked='checked')
+        label(for='rememberme') Remember me
+  // .block_content ends 
+  .bendl
+  .bendr
