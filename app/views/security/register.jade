@@ -1,0 +1,41 @@
+.block.small.center.login
+  .block_head
+    .bheadl
+    .bheadr
+    h2 Register
+    ul
+      li
+        a(href='#') back to the site
+  // .block_head ends
+  div.block_content
+    form(method="post",action="/register")
+      p
+        label First Name:
+        br
+        input.text(name="user[first_name]",type="text", value=user.first_name)
+      p
+        label Last Name:
+        br
+        input.text(name="user[last_name]",type="text", value=user.last_name)
+      p
+        label Email:
+        br
+        input.text(name="user[email]",type="text", value=user.email)
+      p
+        label Password:
+        br
+        input.text(name="password1", type='password')
+      p
+        label Password:
+        br
+        input.text(name="password2", type='password')     
+      p
+        input(name="redir", type="hidden" )
+        input.submit(type='submit', value='Login')
+        input#rememberme.checkbox(type='checkbox', checked='checked')
+        | &nbsp;
+        label(for='rememberme') Remember me
+  // .block_content ends 
+  .bendl
+  .bendr
+ 

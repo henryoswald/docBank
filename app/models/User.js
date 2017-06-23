@@ -10,6 +10,8 @@ var ObjectId = Schema.ObjectId;
 // User schema
 var UserSchema = new Schema({
   email					: {type : String, default : ''},
+  first_name		: {type : String, default : ''},
+  last_name			: {type : String, default : ''},
   password			: {type : String, default : ''},
 });
 

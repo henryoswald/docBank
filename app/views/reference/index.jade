@@ -1,19 +1,63 @@
-h2 Your References
-- var month_names = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"); 
-div#references
-  table
-    tr
-      td Position
-      td Referee
-      td Start date
-      td End date
-        - each reference in references
+- var month_names = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");  
+// .block ends 
+.block
+  .block_head
+    .bheadl
+    .bheadr
+    h2 Your References
+    ul
+      li
+        a(href='#') Edit pages
+      li
+        a(href='#') Add page
+  // .block_head ends   
+  .block_content
+    form(action='', method='post')
+      table.sortable(cellpadding='0', cellspacing='0', width='100%')
+        thead
           tr
-            td
-              a(href='/reference/'+reference._id) #{reference.position}
-            td
-              a(href='/reference/'+reference._id) #{reference.referee_Id}
-            td
-              a(href='/reference/'+reference._id) #{month_names[reference.start_date.getMonth()]} #{reference.start_date.getDate()}, #{reference.start_date.getFullYear()}
-            td
-              a(href='/reference/'+reference._id) #{month_names[reference.end_date.getMonth()]} #{reference.end_date.getDate()}, #{reference.end_date.getFullYear()}
+            th(width='10')
+              input.check_all(type='checkbox')
+            th Postion
+            th Company
+            th Start Date
+            th End Date
+            th Confirmed            
+        tbody
+          - each reference in references
+            tr
+              td
+                input(type='checkbox')
+              td
+                a(href='/reference/'+reference._id) #{reference.position}
+              td
+                #{reference.company}
+              td
+                #{month_names[reference.start_date.getMonth()]} #{reference.start_date.getDate()}, #{reference.start_date.getFullYear()}
+              td
+                #{month_names[reference.end_date.getMonth()]} #{reference.end_date.getDate()}, #{reference.end_date.getFullYear()}
+              td
+                - if (reference.confirmed==true)
+                  | yes
+                - else
+                  | no
+      .tableactions
+        select
+          option Actions
+          option Delete
+          option Edit
+        input.submit.tiny(type='submit', value='Apply to selected')
+      // .tableactions ends 
+      .pagination.right
+        a(href='#') «
+        a.active(href='#') 1
+        a(href='#') 2
+        a(href='#') 3
+        a(href='#') 4
+        a(href='#') 5
+        a(href='#') 6
+        a(href='#') »
+      // .pagination ends 
+  // .block_content ends 
+  .bendl
+  .bendr
