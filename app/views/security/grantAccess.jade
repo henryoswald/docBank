@@ -1,0 +1,20 @@
+.block.small.center.login
+  .block_head
+    .bheadl
+    .bheadr
+    h2 Grant Access
+    ul
+      li
+        a(href='#') back to the site
+  // .block_head ends 
+  .block_content
+    form(method="post",action="/user/grantAccess")
+      p
+        label Email
+        br
+        input.text(name="email", type="text")
+      p      
+        input.submit(type='submit', value='Grant')
+  // .block_content ends 
+  .bendl
+  .bendr

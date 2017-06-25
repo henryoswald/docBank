@@ -38,9 +38,17 @@ app.dynamicHelpers(
 		session: function(req, res){
 			return req.session;
 		},
+	
+		//return function so message is only delted when function is called
+		flashMessages: function(request) { 
+      return function() {
+				console.log(sys.inspect(request.flash('error')));
+        return request.flash('error');
+      };
+    },
 
 		flash: function(req, res){
-			return req.flash();
+			return req.flash.msg;
 		},
 	}	
 );
@@ -50,28 +58,51 @@ var Reference = require('./app/controllers/Reference_Controller.js');
 var User = require('./app/controllers/User_Controller.js');
 
 // ----------------- PATHS--------------
-app.get('/', function(req, res){
-  res.redirect('/reference');
+app.get('/', function (req,res){
+	res.render('home', {
+    title: 'Requesting Reference'
+  });
 });
+
 
 //User.requiresLogin
 // Reference
+app.get('/test', function(req, res){
+ res.render('test', {
+    title: 'Requesting Reference'
+  });
+});
+ 
 app.get('/reference/request/new',User.requiresLogin, Reference.requestForm);
 app.post('/reference/request/new',User.requiresLogin, Reference.request);
 
 app.get('/reference', User.requiresLogin,  Reference.list); //lists that users references
-app.get('/reference/:id',User.requiresLogin, Reference.detail); //shows that reference in detial
-app.get('/reference/:id/edit',User.requiresLogin, Reference.editForm);
-app.post('/reference/:id/edit',User.requiresLogin, Reference.edit);
+app.get('/reference/:ref_id', User.hasAccess, Reference.detail); //shows that reference in detial
+app.get('/reference/:ref_id/edit', User.hasAccess, Reference.editForm);
+app.post('/reference/:ref_id/edit', User.hasAccess, Reference.edit);
+app.del('/reference/:ref_id', User.hasAccess);
 
-app.del('/reference/:id', Reference.del);
 
-// User
+app.get('/reference/confirm/:ref_id', User.requiresLogin, User.hasAccess, Reference.confirmForm); //TODO confirms reference is correct
+
+app.get('/reference/user/:user_id', User.requiresLogin, Reference.list); //list of users references
+
+//app.get('/candidates', User.requiresLogin, User.listAccess); //TODO list of candidates user has access too
+
+
+// User loging in
 app.get('/register', User.createForm);
-app.post('/user', User.create);
+app.post('/register', User.create);
 app.get('/login', User.loginForm);
 app.post('/login', User.login);
 app.get('/logout', User.logout);
+
+app.get('/user/grantAccess',User.requiresLogin, User.grantAccessForm);
+app.post('/user/grantAccess',User.requiresLogin, User.grantAccess);
+//app.get('/user/accessList', User.requiresLogin, User.accessList); //TODO list of users given permission to view
+
+
+
 
 // Only listen on $ node app.js
 var port = process.env.PORT || 3000;
