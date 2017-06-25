@@ -23,15 +23,35 @@ exports.requestForm = function(req, res){
 //create a new request
 exports.request = function(req, res){
   var reference = new Reference(req.body.reference);
-  reference.save();
+  reference.save();		
+	User.find({'email':req.body.email_body}, function (err, user){
+		if(user){
+		//email is already accociated with an account, TODO give permission to the user
+		var subject = req.session.user.email +' has requested a reference for ' + reference.position;
+		var message = req.body.email_body +'" <a href="'+common.settings.url+'/reference/confirm/'+reference._id+'> click here</a>'; 
+		common.email.sendEmail(referee.referee_email, subject, message); 
+		}
+	});
   res.redirect('/reference'); 
 };
 
 
+    //send and e-mail to the user asking them to fill it in
+    //      common.email.sendEmail(referee.referee_email, 
+    //                req.session.user.email +' has requested a reference for ' + reference.position, 
+    //                '"'+req.body.email_body +'" <a href="'+common.settings.url+'reference/'+reference._id+'/edit"> click here</a>'
+    //               );
+
 // List
 exports.list = function(req, res){
-  Reference.find({'candidate_id': req.session.user._id}, function(err, references) {
-    console.log('getting sessions references : '+req.session.user._id);
+	var user_id;
+	if(req.params.user_id){
+		user_id = req.params.user_id;
+	}else{
+		user_id = req.session.user._id;
+	}
+  Reference.find({'candidate_id': user_id}, function(err, references) {
+    console.log('getting sessions references : '+user_id);
       res.render('reference/index', {
         title: 'List of references',
         references: references
@@ -39,23 +59,34 @@ exports.list = function(req, res){
   });
 };
 
-//  var reference = Reference.findEmbedded(req.params.id);
 
 // View an reference in detial
 exports.detail = function(req, res){
-  Reference.findOne({'_id':req.params.id}, function(err,reference){
-    res.render('reference/detail', {
-      title: 'Reference x',
+  Reference.findOne({'_id':req.params.ref_id}, function(err,reference){
+		if(reference){
+			res.render('reference/detail', {
+  	    title: 'Reference x',
+  	    reference: reference
+  	  });
+		}else{
+			res.redirect('/');
+		}
+  });
+};
+
+exports.confirmForm = function(req, res){
+	Reference.findOne({_id:req.params.ref_id}, function(err,reference){
+		console.log('confirming'+req.params.ref_id);
+    res.render('reference/confirm', {
+      title: "Edit Reference",
       reference: reference
     });
   });
 };
 
-
-
 // Edit an reference
 exports.editForm = function(req, res){
-  Reference.findOne({_id:req.params.id}, function(err,reference){
+  Reference.findOne({_id:req.params.ref_id}, function(err,reference){
     res.render('reference/edit', {
       title: "Edit Reference",
       reference: reference
@@ -66,13 +97,20 @@ exports.editForm = function(req, res){
 
 // Edit an reference
 exports.edit = function(req, res){
-  if(req.body.reference._id)
-    Reference.findOne({_id:req.body.reference._id}, function(err, a) {
-      a.position = req.body.reference.position;
-      a.body = req.body.reference.body;
-      a.start_date = req.body.reference.start_date;
-      a.end_date = req.body.reference.end_date;     
-      a.save(function(err) {
+    Reference.findOne({_id:req.params.ref_id}, function(err, ref) {
+      
+			//need to individuall update the values
+			ref.position = req.body.reference.position;
+      ref.start_date = req.body.reference.start_date;
+      ref.end_date = req.body.reference.end_date;
+			ref.updated_date = new Date();
+      ref.leaving_reason = req.body.reference.leaving_reason;
+      ref.salary = req.body.reference.salary;
+			
+			if(req.body.reference.confirmed){
+				ref.confirmed = req.body.reference.confirmed;
+			}
+      ref.save(function(err) {
         console.log(err);
       })
     });
@@ -82,7 +120,7 @@ exports.edit = function(req, res){
 
 // Delete an reference
 exports.del = function(req, res){
-  Reference.findOne({_id:req.params.id}, function(err,reference){
+  Reference.findOne({_id:req.params.ref_id}, function(err,reference){
     reference.remove(function(err){
       console.log(err);
     });
@@ -115,9 +153,5 @@ exports.del = function(req, res){
 //
 
 
-        //send and e-mail to the user asking them to fill it in
-    //      common.email.sendEmail(referee.referee_email, 
-    //                req.session.user.email +' has requested a reference for ' + reference.position, 
-    //                '"'+req.body.email_body +'" <a href="'+common.settings.url+'reference/'+reference._id+'/edit"> click here</a>'
-    //               );
+
 

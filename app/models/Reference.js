@@ -11,16 +11,20 @@ var ObjectId = Schema.ObjectId;
 
 // Reference schema
 var ReferenceSchema = new Schema({
-  position			: {type : String, default : ''},
-  body					: {type : String, default : ''},
-  start_date		: {type : Date,	  default : ''},
-  end_date			: {type : Date,   default : ''},
-  created_date  : {type : Date,   default : Date.now},
-  updated_date  : {type : Date,   default : Date.now},
-	filled_in			: {type : Boolean, default : false},
-  candidate_id  : {type : ObjectId},
-  access_ids    : [ObjectId],
-  referee_id    : {type : ObjectId}
+  position			 : {type : String, default : ''},
+  start_date		 : {type : Date,	  default : ''},
+  end_date			 : {type : Date,   default : ''},
+  created_date   : {type : Date,   default : Date.now},
+  updated_date   : {type : Date,   default : Date.now},
+  salary				 : {type : String, default : ''},
+  leaving_reason : {type : String, default : ''},
+  leaving_reason : {type : String, default : ''},		
+  candidate_id   : {type : ObjectId},
+  access_ids     : [ObjectId],
+  referee_id     : {type : ObjectId},
+	confirmed			 : {type : Boolean, default : false},
+
+	
 });
 
 mongoose.model('Reference', ReferenceSchema);
